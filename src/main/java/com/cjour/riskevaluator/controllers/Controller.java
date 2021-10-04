@@ -1,7 +1,7 @@
 package com.cjour.riskevaluator.controllers;
 
+import com.cjour.riskevaluator.exception.NoNoteFoundForThisFamilyName;
 import com.cjour.riskevaluator.model.Note;
-import com.cjour.riskevaluator.model.Patient;
 import com.cjour.riskevaluator.services.RiskAssessmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +18,12 @@ public class Controller {
     RiskAssessmentService riskAssessmentService;
 
     @GetMapping("/assess/id/{id}")
-    public ResponseEntity<List<Note>> evaluateRisk(@PathVariable Integer id){
+    public String evaluateRisk(@PathVariable Integer id) throws Exception {
         return riskAssessmentService.evaluateRiskById(id);
     }
 
     @GetMapping("/assess/familyName/{familyName}")
-    public ResponseEntity<List<Note>> evaluateRisk(@PathVariable String familyName){
+    public String evaluateRisk(@PathVariable String familyName) throws NoNoteFoundForThisFamilyName {
         return riskAssessmentService.evaluateRiskByFamilyName(familyName);
     }
 }
