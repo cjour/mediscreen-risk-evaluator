@@ -15,5 +15,11 @@ public interface IPatient {
 
         @GetMapping("/patient/list")
         ResponseEntity<List<Patient>> getAllPatient();
+
+        @GetMapping("/patient/{id}")
+        ResponseEntity<Patient> getPatientById();
+
+        @GetMapping("/patient/{familyName}")
+        ResponseEntity<Patient> getPatientByFamilyName();
 }
 
